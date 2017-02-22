@@ -1,0 +1,8 @@
+.unicode {
+    font-family: "ThanLwin", "Arial Unicode MS", "Microsoft Sans Serif";
+}
+@familyont-face
+{
+    font-family: "ThanLwin";
+    src: url('./ThanlwinBold.ttf');
+}
