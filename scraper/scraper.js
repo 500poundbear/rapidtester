@@ -14,14 +14,14 @@ var downloadPath = '';
 lineReader.createInterface({
     input: fs.createReadStream(downloadConfigPath)
 }).on('line', function (url) {
-    console.log(url);
+    downloadPath = url;
 });
 
 lineReader.createInterface({
     input: fs.createReadStream(urlsPath)
 }).on('line', function (url) {
     console.log("Scraping: "+url);
-    //startScrape(url);
+    startScrape(url);
 });
 
 function startScrape(url) {
@@ -61,7 +61,18 @@ function startScrape(url) {
         var defn = $('.highlight-block-right-wide article ol li a audio');
         defn.each(function(i, line) {
             try{
-                console.log(line.attribs.src);
+                var path = line.attribs.src;
+    
+                var url = downloadPath + path;
+
+                var options = {
+                    directory: './clips/'
+                }
+
+                download(url, options, function(err) {
+                    if (err) throw err;
+                    console.log("done");
+                });
             } catch (e){}
         });
         
