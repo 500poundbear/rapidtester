@@ -16,7 +16,7 @@ export function next(state) {
   const bankSize = bank.size;
 
   const index = Math.floor(Math.random() * bankSize);
-  return state.set("question", bank.get(index));
+  return state.set("question", bank.get(index).merge({romanisationShow:false}));
 }
 
 export function increment(state, wordId) {
@@ -29,6 +29,15 @@ export function increment(state, wordId) {
     return word;
   });
   return state.set('bank', newBank);
+}
+
+export function toggle_romanisation(state) {
+  const question = state.get('question');
+  if (!question) return state;
+
+  const romanisationState = question.get('romanisationShow') || false;
+  const newQuestion = question.set('romanisationShow', !romanisationState);
+  return state.set('question', newQuestion);
 }
 
 export const INITIAL_STATE = Map({bank: List()});

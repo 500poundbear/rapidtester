@@ -25,7 +25,7 @@ export default React.createClass({
     };
     let paraStyle = {
       display: 'flex',
-      justifyContent: 'center',
+      justifyContent: 'center', 
       fontSize: '25px',
       marginLeft: '20px',
       marginRight: '20px',

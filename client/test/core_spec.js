@@ -2,7 +2,10 @@
 import {List, Map, fromJS} from 'immutable';
 import {expect} from 'chai';
 
-import {loadWord, next, increment} from '../src/core';
+import {loadWord,
+        next,
+        increment,
+        toggle_romanisation } from '../src/core';
 
 describe('Application Logic', () => {
 
@@ -42,8 +45,13 @@ describe('Application Logic', () => {
         bank: List.of(
           Map.of('unicode', 'က', 'romanisation', 'ga1', 'meaning', 'hi',
             'path', '/clips/a.mp3', 'count', 0)),
-        question: Map.of('unicode', 'က', 'romanisation', 'ga1', 'meaning',
-          'hi', 'path', '/clips/a.mp3', 'count', 0)
+        question: Map.of(
+          'unicode', 'က',
+          'romanisation', 'ga1',
+          'meaning', 'hi',
+          'path', '/clips/a.mp3',
+          'count', 0,
+          'romanisationShow', false)
       }));
     });
   });
@@ -65,6 +73,54 @@ describe('Application Logic', () => {
           Map.of('id', 4, 'count', 3),
           Map.of('id', 6, 'count', 3)
         )}));
+    });
+  });
+
+  describe('toggles romanisation', () => {
+    it('from off to on', () => {
+      const state = Map({
+        question: Map.of('romanisationShow', false)
+      });
+
+      const nextState = toggle_romanisation(state);
+
+      expect(nextState).to.equal(Map({
+        question: Map.of(
+            'romanisationShow', true)
+        }));
+    });
+
+    it('from on to off', () => {
+      const state = Map({
+        question: Map.of('romanisationShow', true)
+      });
+
+      const nextState = toggle_romanisation(state);
+
+      expect(nextState).to.equal(Map({
+        question: Map.of(
+            'romanisationShow', false)
+        }));
+    });
+
+    it('does nothing if there is no current question', () => {
+      const state = Map({
+        bank: List.of(
+          Map.of('id', 1, 'count', 1),
+          Map.of('id', 4, 'count', 2),
+          Map.of('id', 6, 'count', 3)
+        )
+      });
+
+      const nextState = toggle_romanisation(state);
+
+      expect(nextState).to.equal(Map({
+        bank: List.of(
+          Map.of('id', 1, 'count', 1),
+          Map.of('id', 4, 'count', 2),
+          Map.of('id', 6, 'count', 3)
+        )
+      }));
     });
   });
 });
