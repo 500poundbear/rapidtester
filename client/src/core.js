@@ -49,4 +49,22 @@ export function toggle_meaning(state) {
   return state.set('question', newQuestion);
 }
 
+export function play_sound(state) {
+  const question = state.get('question');
+  if (!question) return state;
+
+  const playingState = question.get('playingClip') || false;
+  const newQuestion = question.set('playingClip', true);
+  return state.set('question', newQuestion);
+}
+
+export function stop_sound(state) {
+  const question = state.get('question');
+  if (!question) return state;
+
+  const playingState = question.get('playingClip') || false;
+  const newQuestion = question.set('playingClip', false);
+  return state.set('question', newQuestion);
+}
+
 export const INITIAL_STATE = Map({bank: List()});

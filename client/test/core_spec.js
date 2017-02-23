@@ -6,7 +6,9 @@ import {loadWord,
         next,
         increment,
         toggle_romanisation,
-        toggle_meaning
+        toggle_meaning,
+        play_sound,
+        stop_sound
         } from '../src/core';
 
 describe('Application Logic', () => {
@@ -124,6 +126,35 @@ describe('Application Logic', () => {
         )
       }));
     });
+  });
+  describe('signals clip playing status', () => {
+    it('by reflecting that it is playing', () => {
+      const state = Map({
+        question: Map.of('playingClip', false)
+      });
+
+      const nextState = play_sound(state);
+
+      expect(nextState).to.equal(Map({
+        question: Map.of(
+            'playingClip', true)
+        }));
+    });
+
+    it('by reflecting that clip has stopped playing', () => {
+      const state = Map({
+        question: Map.of('playingClip', true)
+      });
+
+      const nextState = stop_sound(state);
+
+      expect(nextState).to.equal(Map({
+        question: Map.of(
+            'playingClip', false)
+        }));
+    });
+
+
   });
   describe('toggles meaning', () => {
     it('from off to on', () => {
