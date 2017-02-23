@@ -40,4 +40,13 @@ export function toggle_romanisation(state) {
   return state.set('question', newQuestion);
 }
 
+export function toggle_meaning(state) {
+  const question = state.get('question');
+  if (!question) return state;
+
+  const meaningState = question.get('meaningShow') || false;
+  const newQuestion = question.set('meaningShow', !meaningState);
+  return state.set('question', newQuestion);
+}
+
 export const INITIAL_STATE = Map({bank: List()});

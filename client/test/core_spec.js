@@ -5,7 +5,9 @@ import {expect} from 'chai';
 import {loadWord,
         next,
         increment,
-        toggle_romanisation } from '../src/core';
+        toggle_romanisation,
+        toggle_meaning
+        } from '../src/core';
 
 describe('Application Logic', () => {
 
@@ -113,6 +115,53 @@ describe('Application Logic', () => {
       });
 
       const nextState = toggle_romanisation(state);
+
+      expect(nextState).to.equal(Map({
+        bank: List.of(
+          Map.of('id', 1, 'count', 1),
+          Map.of('id', 4, 'count', 2),
+          Map.of('id', 6, 'count', 3)
+        )
+      }));
+    });
+  });
+  describe('toggles meaning', () => {
+    it('from off to on', () => {
+      const state = Map({
+        question: Map.of('meaningShow', false)
+      });
+
+      const nextState = toggle_meaning(state);
+
+      expect(nextState).to.equal(Map({
+        question: Map.of(
+            'meaningShow', true)
+        }));
+    });
+
+    it('from on to off', () => {
+      const state = Map({
+        question: Map.of('meaningShow', true)
+      });
+
+      const nextState = toggle_meaning(state);
+
+      expect(nextState).to.equal(Map({
+        question: Map.of(
+            'meaningShow', false)
+        }));
+    });
+
+    it('does nothing if there is no current question', () => {
+      const state = Map({
+        bank: List.of(
+          Map.of('id', 1, 'count', 1),
+          Map.of('id', 4, 'count', 2),
+          Map.of('id', 6, 'count', 3)
+        )
+      });
+
+      const nextState = toggle_meaning(state);
 
       expect(nextState).to.equal(Map({
         bank: List.of(
