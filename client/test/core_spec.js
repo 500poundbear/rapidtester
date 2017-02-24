@@ -8,7 +8,9 @@ import {loadWord,
         toggle_romanisation,
         toggle_meaning,
         play_sound,
-        stop_sound
+        stop_sound,
+        set_goal,
+        increment_corrects
         } from '../src/core';
 
 describe('Application Logic', () => {
@@ -127,6 +129,45 @@ describe('Application Logic', () => {
       }));
     });
   });
+
+  describe('configuration', () => {
+    it('increases global correct count when config is not present', () => {
+      const state = Map();
+      const nextState = increment_corrects(state);
+      expect(nextState).to.equal(Map({
+        config: Map({'corrects': 1})
+      }));
+    });
+
+    it('increases global correct count when config is present', () => {
+      const state = Map({'config': Map({'corrects': 31})});
+      const nextState = increment_corrects(state);
+      expect(nextState).to.equal(Map({
+        config: Map({'corrects': 32})
+      }));
+    });
+
+    it('sets the number of goals when config is not present', () => {
+      const state = Map();
+
+      const nextState = set_goal(state, 382);
+
+      expect(nextState).to.equal(Map({
+        config: Map({goal: 382})
+      }));
+    });
+
+    it('sets the number of goals when config is present', () => {
+      const state = Map({config: Map()});
+
+      const nextState = set_goal(state, 593);
+
+      expect(nextState).to.equal(Map({
+        config: Map({goal: 593})
+      }));
+    });
+  });
+
   describe('signals clip playing status', () => {
     it('by reflecting that it is playing', () => {
       const state = Map({

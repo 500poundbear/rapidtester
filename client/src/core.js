@@ -67,4 +67,22 @@ export function stop_sound(state) {
   return state.set('question', newQuestion);
 }
 
+// Configuration functions
+
+export function set_goal(state, noOfCorrects) {
+  const config = state.get('config', Map());
+  const newConfiguration = Map({goal: noOfCorrects});
+  const newConfig = config.merge(newConfiguration);
+  return state.set('config', newConfig);
+}
+
+export function increment_corrects(state) {
+  const config = state.get('config', Map({corrects: 0}));
+  const incrementCorrects = config.get('corrects', 0) + 1;
+  const newConfiguration = Map({corrects: incrementCorrects});
+
+  const newConfig = config.merge(newConfiguration);
+  return state.set('config', newConfig);
+}
+
 export const INITIAL_STATE = Map({bank: List()});
