@@ -10,7 +10,8 @@ import {loadWord,
         play_sound,
         stop_sound,
         set_goal,
-        increment_corrects
+        increment_corrects,
+        increment_attempts
         } from '../src/core';
 
 describe('Application Logic', () => {
@@ -131,6 +132,22 @@ describe('Application Logic', () => {
   });
 
   describe('configuration', () => {
+    it('increases global count of attempts when config is not present', () => {
+      const state = Map();
+      const nextState = increment_attempts(state);
+      expect(nextState).to.equal(Map({
+        config: Map({'attempts': 1})
+      }));
+    });
+
+    it('increases global count of attempts when config is present', () => {
+      const state = Map({config: Map({'attempts': 493})});
+      const nextState = increment_attempts(state);
+      expect(nextState).to.equal(Map({
+        config: Map({'attempts': 494})
+      }));
+    });
+
     it('increases global correct count when config is not present', () => {
       const state = Map();
       const nextState = increment_corrects(state);

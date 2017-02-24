@@ -35,7 +35,7 @@ export function toggle_romanisation(state) {
   const question = state.get('question');
   if (!question) return state;
 
-  const romanisationState = question.get('romanisationShow') || false;
+  const romanisationState = question.get('romanisationShow', false);
   const newQuestion = question.set('romanisationShow', !romanisationState);
   return state.set('question', newQuestion);
 }
@@ -80,6 +80,15 @@ export function increment_corrects(state) {
   const config = state.get('config', Map({corrects: 0}));
   const incrementCorrects = config.get('corrects', 0) + 1;
   const newConfiguration = Map({corrects: incrementCorrects});
+
+  const newConfig = config.merge(newConfiguration);
+  return state.set('config', newConfig);
+}
+
+export function increment_attempts(state) {
+  const config = state.get('config', Map({attempts: 0}));
+  const incrementAttempts = config.get('attempts', 0) + 1;
+  const newConfiguration = Map({attempts: incrementAttempts});
 
   const newConfig = config.merge(newConfiguration);
   return state.set('config', newConfig);
