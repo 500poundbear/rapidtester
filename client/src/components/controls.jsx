@@ -23,11 +23,23 @@ export default React.createClass({
       </Button.Group>
       <br/>
       <Button.Group style={divStyle}>
-        <Button color={this.getMeaningShow() ? 'olive' : 'grey'}>Meaning</Button>
+        <Button
+          onClick={this.props.onClickMeaning}
+          color={this.getMeaningShow() ? 'olive' : 'grey'}>
+          Meaning
+        </Button>
         <Button.Or />
-        <Button color={this.getRomanisationShow() ? 'olive' : 'grey'}>Romanisation</Button>
+        <Button
+          onClick={this.props.onClickRomanisation}
+          color={this.getRomanisationShow() ? 'olive' : 'grey'}>
+          Romanisation
+        </Button>
         <Button.Or />
-        <Button color={this.getClipPlaying() ? 'olive' : 'grey'}>Play Sound</Button>
+        <Button
+          onClick={this.props.OnClickPlaySound}
+          color={this.getClipPlaying() ? 'olive' : 'grey'}>
+          Play Sound
+        </Button>
       </Button.Group>
     </div>;
   }

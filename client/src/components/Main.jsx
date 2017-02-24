@@ -26,10 +26,13 @@ const Main = React.createClass({
         />
         <Controls
           romanisationShow={this.props.romanisationShow}
-          getMeaningShow={this.props.meaningShow}
-          getClipPlaying={this.props.playingClip}
+          meaningShow={this.props.meaningShow}
+          clipPlaying={this.props.playingClip}
           onClickNot={this.props.onClickNot}
           onClickOk={this.props.onClickOk}
+          onClickMeaning={this.props.toggleMeaning}
+          onClickRomanisation={this.props.toggleRomanisation}
+          OnClickPlaySound={this.props.playSound}
         />
         <StatsPanel
           corrects={this.props.corrects}
@@ -66,6 +69,15 @@ function mapDispatchToProps(dispatch) {
     onClickOk: function () {
       dispatch({'type': 'INCREMENT_CORRECTS'});
       dispatch({'type': 'INCREMENT_ATTEMPTS'});
+    },
+    toggleMeaning: function () {
+      dispatch({'type': 'TOGGLE_MEANING'});
+    },
+    toggleRomanisation: function () {
+      dispatch({'type': 'TOGGLE_ROMANISATION'});
+    },
+    playSound: function() {
+
     }
   }
 }
