@@ -34,6 +34,7 @@ const Main = React.createClass({
           onClickRomanisation={this.props.toggleRomanisation}
           onClickPlaySound={this.props.playSound}
           setClipStoppedPlaying={this.props.setClipStoppedPlaying}
+          clipUrl={this.props.clipUrl}
         />
         <StatsPanel
           corrects={this.props.corrects}
@@ -58,7 +59,8 @@ function mapStateToProps(state) {
     playingClip: question.get('playingClip', ''),
     meaningShow: question.get('meaningShow', ''),
     attempts: config.get('attempts', 0),
-    corrects: config.get('corrects', 0)
+    corrects: config.get('corrects', 0),
+    clipUrl: question.get('path', '')
   };
 }
 

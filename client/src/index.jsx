@@ -15,7 +15,15 @@ store.dispatch({type: 'LOAD_WORD',
     'unicode': 'fက',
     'romanisation': 'ga1',
     'meaning': 'catfish',
-    'path': '/clips/a.mp3'
+    'path': '/clips/hta3.mp3'
+  }
+});
+store.dispatch({type: 'LOAD_WORD',
+  word: {
+    'unicode': 'ww',
+    'romanisation': 'ba3',
+    'meaning': 'cowcat',
+    'path': '/clips/kja3.mp3'
   }
 });
 store.dispatch({type: 'NEXT'});

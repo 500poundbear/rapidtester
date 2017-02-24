@@ -6,17 +6,20 @@ export default React.createClass({
   getRomanisationShow: function() {
     return this.props.romanisationShow;
   },
-  getMeaningShow: function() {
+  getMeaningShow: function () {
     return this.props.meaningShow;
   },
-  getClipPlaying: function() {
+  getClipPlaying: function () {
     return this.props.clipPlaying;
+  },
+  getClipUrl: function() {
+    return this.props.clipUrl||'ba2.mp3';
   },
   render: function() {
     let divStyle =  {display: 'flex', justifyContent: 'center'};
     return <div>
       <Sound
-        url="ba2.mp3"
+        url={this.getClipUrl()}
         playStatus={this.getClipPlaying() ? "PLAYING" : "STOPPED"}
         onFinishedPlaying={this.props.setClipStoppedPlaying}
         />
