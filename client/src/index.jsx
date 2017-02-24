@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import Main from './components/Main';
+import {MainContainer} from './components/Main';
 
 import { Router, Route, Link, hashHistory} from 'react-router';
 
@@ -20,7 +20,7 @@ store.dispatch({type: 'LOAD_WORD',
 });
 
 const routes = <Route component={App}>
-  <Route path="/app" component={Main} />
+  <Route path="/app" component={MainContainer} />
 </Route>;
 
 ReactDOM.render(
