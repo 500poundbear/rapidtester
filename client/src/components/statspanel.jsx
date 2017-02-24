@@ -18,7 +18,7 @@ export default React.createClass({
     let corrects = this.getCorrects();
     let attempts = this.getAttempts();
     if (attempts === 0) return corrects;
-    else return (corrects / attempts);
+    else return Math.floor((corrects / attempts) * 100);
   },
   render: function() {
     let divStyle =  {display: 'flex', justifyContent: 'center'};
