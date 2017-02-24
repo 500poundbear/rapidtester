@@ -5,7 +5,12 @@ import {loadWord,
         toggle_romanisation,
         toggle_meaning,
         play_sound,
-        INITIAL_STATE} from './core';
+        stop_sound,
+        set_goal,
+        increment_corrects,
+        increment_attempts,
+        INITIAL_STATE
+       } from './core';
 
 export function reducer(state = INITIAL_STATE, action){
   switch (action.type) {
@@ -21,6 +26,14 @@ export function reducer(state = INITIAL_STATE, action){
     return toggle_meaning(state);
   case 'PLAY_SOUND':
     return play_sound(state);
+  case 'STOP_SOUND':
+    return stop_sound(state);
+  case 'SET_GOAL':
+    return set_goal(state, action.goal);
+  case 'INCREMENT_CORRECTS':
+    return increment_corrects(state);
+  case 'INCREMENT_ATTEMPTS':
+    return increment_attempts(state);
   }
   return state;
 }
