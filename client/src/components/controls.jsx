@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Divider } from 'semantic-ui-react';
+import Sound from 'react-sound';
 
 export default React.createClass({
   getRomanisationShow: function() {
@@ -9,11 +10,16 @@ export default React.createClass({
     return this.props.meaningShow;
   },
   getClipPlaying: function() {
-    return this.props.playingClip;
+    return this.props.clipPlaying;
   },
   render: function() {
     let divStyle =  {display: 'flex', justifyContent: 'center'};
     return <div>
+      <Sound
+        url="ba2.mp3"
+        playStatus={this.getClipPlaying() ? "PLAYING" : "STOPPED"}
+        onFinishedPlaying={this.props.setClipStoppedPlaying}
+        />
       <Button.Group style={divStyle}>
         <Button size='massive' onClick={this.props.onClickNot}>Not</Button>
         <Button.Or size='massive' />
@@ -36,7 +42,7 @@ export default React.createClass({
         </Button>
         <Button.Or />
         <Button
-          onClick={this.props.OnClickPlaySound}
+          onClick={this.props.onClickPlaySound}
           color={this.getClipPlaying() ? 'olive' : 'grey'}>
           Play Sound
         </Button>

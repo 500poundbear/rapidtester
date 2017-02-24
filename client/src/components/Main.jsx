@@ -32,7 +32,8 @@ const Main = React.createClass({
           onClickOk={this.props.onClickOk}
           onClickMeaning={this.props.toggleMeaning}
           onClickRomanisation={this.props.toggleRomanisation}
-          OnClickPlaySound={this.props.playSound}
+          onClickPlaySound={this.props.playSound}
+          setClipStoppedPlaying={this.props.setClipStoppedPlaying}
         />
         <StatsPanel
           corrects={this.props.corrects}
@@ -57,7 +58,7 @@ function mapStateToProps(state) {
     playingClip: question.get('playingClip', ''),
     meaningShow: question.get('meaningShow', ''),
     attempts: config.get('attempts', 0),
-    corrects: config.get('corrects', 0),
+    corrects: config.get('corrects', 0)
   };
 }
 
@@ -77,7 +78,10 @@ function mapDispatchToProps(dispatch) {
       dispatch({'type': 'TOGGLE_ROMANISATION'});
     },
     playSound: function() {
-
+      dispatch({'type': 'PLAY_SOUND'});
+    },
+    setClipStoppedPlaying: function() {
+      dispatch({'type': 'STOP_SOUND'});
     }
   }
 }
