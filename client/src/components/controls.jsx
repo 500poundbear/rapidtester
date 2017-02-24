@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Divider } from 'semantic-ui-react';
 import Sound from 'react-sound';
+import {HotKeys, HotKeyMapMixin} from 'react-hotkeys';
 
 export default React.createClass({
   getRomanisationShow: function() {
@@ -16,8 +17,24 @@ export default React.createClass({
     return this.props.clipUrl||'ba2.mp3';
   },
   render: function() {
+    const keyMap = {
+      'ok': 'h',
+      'not': 'g',
+      'meaning':'v',
+      'romanisation':'b',
+      'play':'n'
+    };
+    const handlers = {
+      'ok': this.props.onClickOk,
+      'not': this.props.onClickNot,
+      'meaning': this.props.onClickMeaning,
+      'romanisation': this.props.onClickRomanisation,
+      'play': this.props.onClickPlaySound,
+    };
+
     let divStyle =  {display: 'flex', justifyContent: 'center'};
-    return <div>
+    return <HotKeys keyMap={keyMap} handlers={handlers}>
+      <div>
       <Sound
         url={this.getClipUrl()}
         playStatus={this.getClipPlaying() ? "PLAYING" : "STOPPED"}
@@ -50,6 +67,7 @@ export default React.createClass({
           Play Sound
         </Button>
       </Button.Group>
-    </div>;
+    </div>
+    </HotKeys>;
   }
 });

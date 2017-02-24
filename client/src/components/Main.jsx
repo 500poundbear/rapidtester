@@ -11,6 +11,14 @@ import {connect} from 'react-redux';
 
 const Main = React.createClass({
   mixins: [PureRenderMixin],
+  triggerOk: function(){
+
+  },
+  triggerNot: function(){
+    alert("NOT");
+    dispatch({'type': 'INCREMENT_ATTEMPTS'});
+    dispatch({'type': 'NEXT'});
+  },
   render: function() {
     return <Grid>
       <Grid.Column width={4}/>
@@ -43,7 +51,7 @@ const Main = React.createClass({
         />
       </Grid.Column>
       <Grid.Column width={4}/>
-    </Grid>;
+      </Grid>;
   }
 });
 
@@ -68,10 +76,12 @@ function mapDispatchToProps(dispatch) {
   return {
     onClickNot: function () {
       dispatch({'type': 'INCREMENT_ATTEMPTS'});
+      dispatch({'type': 'NEXT'});
     },
     onClickOk: function () {
       dispatch({'type': 'INCREMENT_CORRECTS'});
       dispatch({'type': 'INCREMENT_ATTEMPTS'});
+      dispatch({'type': 'NEXT'});
     },
     toggleMeaning: function () {
       dispatch({'type': 'TOGGLE_MEANING'});

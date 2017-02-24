@@ -12,7 +12,7 @@ import {Provider} from 'react-redux';
 const store = createStore(reducer);
 store.dispatch({type: 'LOAD_WORD',
   word: {
-    'unicode': 'fက',
+    'unicode': 'က',
     'romanisation': 'ga1',
     'meaning': 'catfish',
     'path': '/clips/hta3.mp3'
@@ -23,7 +23,7 @@ store.dispatch({type: 'LOAD_WORD',
     'unicode': 'ww',
     'romanisation': 'ba3',
     'meaning': 'cowcat',
-    'path': '/clips/kja3.mp3'
+    'path': '/clips/nga3.mp3'
   }
 });
 store.dispatch({type: 'NEXT'});
