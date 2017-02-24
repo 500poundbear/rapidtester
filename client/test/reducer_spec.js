@@ -6,9 +6,10 @@ import {reducer} from '../src/reducer';
 
 describe('Reducer', () => {
 
+
   it('appears to reduce correctly', () => {
     const actions = [
-      {type: 'LOAD_BANK',
+      {type: 'LOAD_WORD',
        word: {
           'unicode': 'က',
           'romanisation': 'ga1',

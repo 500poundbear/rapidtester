@@ -6,8 +6,9 @@ import Screen from './screen';
 import StatsPanel from './statspanel';
 import Controls from './controls';
 
+import {connect} from 'react-redux';
 
-export default React.createClass({
+const Main = React.createClass({
   mixins: [PureRenderMixin],
   render: function() {
     return <Grid>
@@ -21,3 +22,11 @@ export default React.createClass({
     </Grid>;
   }
 });
+
+function mapStateToProps(state) {
+  return {
+
+  };
+}
+
+export default Main;

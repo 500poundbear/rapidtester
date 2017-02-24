@@ -14,7 +14,7 @@ import {loadWord,
 
 export function reducer(state = INITIAL_STATE, action){
   switch (action.type) {
-  case 'LOAD_BANK':
+  case 'LOAD_WORD':
     return loadWord(state, action.word);
   case 'NEXT':
     return next(state);
