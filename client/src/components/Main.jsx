@@ -28,8 +28,14 @@ const Main = React.createClass({
           romanisationShow={this.props.romanisationShow}
           getMeaningShow={this.props.meaningShow}
           getClipPlaying={this.props.playingClip}
+          onClickNot={this.props.onClickNot}
+          onClickOk={this.props.onClickOk}
         />
-        <StatsPanel></StatsPanel>
+        <StatsPanel
+          corrects={this.props.corrects}
+          attempts={this.props.attempts}
+          goal={this.props.goal}
+        />
       </Grid.Column>
       <Grid.Column width={4}/>
     </Grid>;
@@ -38,6 +44,7 @@ const Main = React.createClass({
 
 function mapStateToProps(state) {
   const question = state.get('question', Map());
+  const config = state.get('config', Map());
   return {
     description: question.get('meaning', ''),
     romanisation: question.get('romanisation', ''),
@@ -45,8 +52,22 @@ function mapStateToProps(state) {
     path: question.get('path', ''),
     romanisationShow: question.get('romanisationShow', ''),
     playingClip: question.get('playingClip', ''),
-    meaningShow: question.get('meaningShow', '')
+    meaningShow: question.get('meaningShow', ''),
+    attempts: config.get('attempts', 0),
+    corrects: config.get('corrects', 0),
   };
 }
 
-export const MainContainer = connect(mapStateToProps)(Main);
+function mapDispatchToProps(dispatch) {
+  return {
+    onClickNot: function () {
+      dispatch({'type': 'INCREMENT_ATTEMPTS'});
+    },
+    onClickOk: function () {
+      dispatch({'type': 'INCREMENT_CORRECTS'});
+      dispatch({'type': 'INCREMENT_ATTEMPTS'});
+    }
+  }
+}
+
+export const MainContainer = connect(mapStateToProps, mapDispatchToProps)(Main);

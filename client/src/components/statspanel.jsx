@@ -5,17 +5,32 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 export default React.createClass({
   mixins: [PureRenderMixin],
+  getCorrects: function() {
+    return this.props.corrects || 0;
+  },
+  getAttempts: function() {
+    return this.props.attempts || 0;
+  },
+  getGoal: function() {
+    return this.props.goal || 0;
+  },
+  calculateAccuracy: function() {
+    let corrects = this.getCorrects();
+    let attempts = this.getAttempts();
+    if (attempts === 0) return corrects;
+    else return (corrects / attempts);
+  },
   render: function() {
     let divStyle =  {display: 'flex', justifyContent: 'center'};
     const items = [
-      { label: 'Corrects', value: '22' },
-      { label: 'Goal (Number of corrects)', value: '50' },
-      { label: 'Accuracy', value: '85%' },
+      { label: 'Corrects', value: this.getCorrects() },
+      { label: 'Goal (Number of corrects)', value: this.getGoal() },
+      { label: 'Accuracy', value: this.calculateAccuracy() + "%" },
     ];
     return <div>
       <Divider style={{marginTop:'30px'}}/>
-      <Progress percent={60} color='olive'>
-        22/30
+      <Progress percent={this.calculateAccuracy()} color='olive'>
+        {this.getCorrects()}/{this.getAttempts()}
       </Progress>
       <Statistic.Group size='mini' items={items} color='olive' style={divStyle} />
       </div>;

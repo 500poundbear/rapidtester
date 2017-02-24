@@ -86,12 +86,16 @@ export function increment_corrects(state) {
 }
 
 export function increment_attempts(state) {
+  console.log("WOOT");
   const config = state.get('config', Map({attempts: 0}));
+  console.log(config);
   const incrementAttempts = config.get('attempts', 0) + 1;
+  console.log(incrementAttempts);
   const newConfiguration = Map({attempts: incrementAttempts});
-
   const newConfig = config.merge(newConfiguration);
-  return state.set('config', newConfig);
+  let x = state.set('config', newConfig);
+  console.log(x);
+  return x;
 }
 
 export const INITIAL_STATE = Map({bank: List()});

@@ -12,13 +12,14 @@ import {Provider} from 'react-redux';
 const store = createStore(reducer);
 store.dispatch({type: 'LOAD_WORD',
   word: {
-    'unicode': 'က',
+    'unicode': 'fက',
     'romanisation': 'ga1',
-    'meaning': 'hi',
+    'meaning': 'catfish',
     'path': '/clips/a.mp3'
   }
 });
-
+store.dispatch({type: 'NEXT'});
+console.log(store.getState());
 const routes = <Route component={App}>
   <Route path="/app" component={MainContainer} />
 </Route>;

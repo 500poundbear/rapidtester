@@ -15,11 +15,13 @@ export default React.createClass({
     let divStyle =  {display: 'flex', justifyContent: 'center'};
     return <div>
       <Button.Group style={divStyle}>
-        <Button size='massive'>Not</Button>
+        <Button size='massive' onClick={this.props.onClickNot}>Not</Button>
         <Button.Or size='massive' />
-        <Button color='olive' size='massive'>OK</Button>
+        <Button onClick={this.props.onClickOk}
+                color='olive'
+                size='massive'>OK</Button>
       </Button.Group>
-      <br></br>
+      <br/>
       <Button.Group style={divStyle}>
         <Button color={this.getMeaningShow() ? 'olive' : 'grey'}>Meaning</Button>
         <Button.Or />
