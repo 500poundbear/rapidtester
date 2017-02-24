@@ -25,6 +25,9 @@ const Main = React.createClass({
           playingClip={this.props.playingClip}
         />
         <Controls
+          romanisationShow={this.props.romanisationShow}
+          getMeaningShow={this.props.meaningShow}
+          getClipPlaying={this.props.playingClip}
         />
         <StatsPanel></StatsPanel>
       </Grid.Column>

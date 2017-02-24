@@ -2,6 +2,15 @@ import React from 'react';
 import { Button, Divider } from 'semantic-ui-react';
 
 export default React.createClass({
+  getRomanisationShow: function() {
+    return this.props.romanisationShow;
+  },
+  getMeaningShow: function() {
+    return this.props.meaningShow;
+  },
+  getClipPlaying: function() {
+    return this.props.playingClip;
+  },
   render: function() {
     let divStyle =  {display: 'flex', justifyContent: 'center'};
     return <div>
@@ -12,11 +21,11 @@ export default React.createClass({
       </Button.Group>
       <br></br>
       <Button.Group style={divStyle}>
-        <Button>Meaning</Button>
+        <Button color={this.getMeaningShow() ? 'olive' : 'grey'}>Meaning</Button>
         <Button.Or />
-        <Button>Romanisation</Button>
+        <Button color={this.getRomanisationShow() ? 'olive' : 'grey'}>Romanisation</Button>
         <Button.Or />
-        <Button>Play Sound</Button>
+        <Button color={this.getClipPlaying() ? 'olive' : 'grey'}>Play Sound</Button>
       </Button.Group>
     </div>;
   }
