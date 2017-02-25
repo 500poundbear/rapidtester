@@ -19,7 +19,7 @@ export function reducer(state = INITIAL_STATE, action){
   case 'NEXT':
     return next(state);
   case 'INCREMENT':
-    return increment(state, action.wid);
+    return increment(state);
   case 'TOGGLE_ROMANISATION':
     return toggle_romanisation(state);
   case 'TOGGLE_MEANING':

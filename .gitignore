@@ -41,3 +41,8 @@ config
 
 # clips
 clips
+clipsbk
+
+# dont commit *.json files in scraper directory
+scraper/*.json
+

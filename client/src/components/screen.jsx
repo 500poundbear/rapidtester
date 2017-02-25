@@ -25,7 +25,7 @@ export default React.createClass({
     let superBig = {
       display: 'flex',
       justifyContent: 'center',
-      fontSize: '300px',
+      fontSize: '200px',
       color: '#63700B',
       marginTop: '100px'
     };
