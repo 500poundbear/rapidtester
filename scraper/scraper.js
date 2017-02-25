@@ -75,16 +75,24 @@ function startScrape(url) {
 
                 pathResults.push(getRelativePath(path));
 
-                /*download(url, options, function(err) {
+                download(url, options, function(err) {
                     if (err) {
-                        throw err;
+                        console.log(err);
+                        console.log("Path " + url + " has NOT completed.");
+                        return;
                     }
                     console.log("Path " + url + " has completed.");
-                });*/
+                });
             } catch (e){}
         });
 
         consolidateResults(unicodeResults, defResults, pathResults);
+
+        fs.appendFile('output.json', JSON.stringify(results), function(err) {
+            if (err) throw err;
+            console.log("Written");
+        });
+
     });
 }
 
@@ -93,7 +101,8 @@ function consolidateResults(unicodeResults, defResults, pathResults) {
         var obj = {
             'unicode' : result,
             'definition' : defResults[i],
-            'path' : pathResults[i]
+            'path' : pathResults[i],
+
         };
         results.push(obj);
     });

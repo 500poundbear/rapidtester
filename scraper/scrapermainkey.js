@@ -39,20 +39,24 @@ function startScrape(url) {
         var pathResults = [];
         var unicodeResults = [];
 
-        var getListElement = $('audio').parent();
-        var getRoman = getListElement.siblings('.burmese');
-
-        var getUnicode = getListElement.siblings('.blue, .unicode');
-        getUnicode.each(function(i, line) {
-            if (line.attribs.class === "blue") {
-                //Modifications
-                console.log(line.children[0].children[0].data);
-            } else if (line.attribs.class === "unicode") {
-                // Main words
-                //console.log(line.children[0].children[0].data);
-            }
+        var getWordsWithAudio = $('audio').first();
+        getWordsWithAudio.each(function(i, line) {
+            pathResults.push(line.attribs.src);
+            //console.log(getWordsWithAudio.parent().prev().prev());
+            console.log(getWordsWithAudio.parent());
         });
 
+/*        var getUnicode = $('li>span.unicode>span.font40');
+        getUnicode.each(function(i, line) {
+            var gline = line.children[0].data;
+            unicodeResults.push(gline);
+        });
+        console.log(unicodeResults.length);
+
+
+        var getRoman = $('li span.unicode span.font40').parent().siblings('.burmese').text();
+        console.log(getRoman);
+*/
 /*
         var aud = $('.highlight-block-right-wide article ol li a audio');
         aud.each(function(i, line) {
