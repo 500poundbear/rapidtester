@@ -61,7 +61,7 @@ function mapStateToProps(state) {
     attempts: config.get('attempts', 0),
     corrects: config.get('corrects', 0),
     clipUrl: question.get('path', ''),
-    goal: config.get('goals', 0)
+    goal: config.get('goal', 0)
   };
 }
 
