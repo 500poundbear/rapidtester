@@ -16,6 +16,8 @@ const store = createStore(reducer);
 dict.forEach(function(e) {
   store.dispatch({type: 'LOAD_WORD',word:e});
 });
+
+store.dispatch({type: 'SET_GOAL', goal: 50});
 /*
 store.dispatch({type: 'LOAD_WORD',
   word: {

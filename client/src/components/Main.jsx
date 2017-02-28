@@ -68,7 +68,8 @@ function mapStateToProps(state) {
     meaningShow: question.get('meaningShow', ''),
     attempts: config.get('attempts', 0),
     corrects: config.get('corrects', 0),
-    clipUrl: question.get('path', '')
+    clipUrl: question.get('path', ''),
+    goal: config.get('goal', 0)
   };
 }
 
