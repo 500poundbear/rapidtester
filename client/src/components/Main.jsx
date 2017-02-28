@@ -11,14 +11,6 @@ import {connect} from 'react-redux';
 
 const Main = React.createClass({
   mixins: [PureRenderMixin],
-  triggerOk: function(){
-
-  },
-  triggerNot: function(){
-    alert("NOT");
-    dispatch({'type': 'INCREMENT_ATTEMPTS'});
-    dispatch({'type': 'NEXT'});
-  },
   render: function() {
     return <Grid>
       <Grid.Column width={4}/>
@@ -69,7 +61,7 @@ function mapStateToProps(state) {
     attempts: config.get('attempts', 0),
     corrects: config.get('corrects', 0),
     clipUrl: question.get('path', ''),
-    goal: config.get('goal', 0)
+    goal: config.get('goals', 0)
   };
 }
 
